@@ -196,6 +196,9 @@ def setType(field_name, field_data, field_map):
 
     field_type = [entry['dataType'] for entry in field_map if entry['property'] == field_name]
 
+    if '(' in field_data:
+        field_data =field_data.split(' (')[0]
+
     if field_type:
         field_type = field_type.pop()
         if field_type == 'numberStr' or field_type == 'double':
