@@ -1,0 +1,53 @@
+# Eduard Schornig (eschorni@cisco.com) | version 0.3
+
+version: "3"
+services:
+  grafana:
+    container_name: grafana-ui
+    image: grafana/grafana
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "3000:3000"
+    user: "0"
+    networks:
+      - webnet
+    environment:
+      - "TZ=Europe/Amsterdam"
+      - "GF_INSTALL_PLUGINS=natel-discrete-panel"
+    volumes:
+      - "./grafana/provisioning:/etc/grafana/provisioning"
+      - "./grafana/config.ini:/etc/grafana/config.ini"
+      - "./grafana/dashboards:/var/lib/grafana/dashboards"
+  influxdb:
+    container_name: influxdb-datasource
+    image: influxdb
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8086:8086"
+      - "8083:8083"
+    volumes:
+      - "./influxdb:/var/lib/influxdb"
+    environment:
+      - "TZ=Europe/Amsterdam"
+    networks:
+      - webnet
+  collector:
+    container_name: stats-collector
+    build:
+      context: stats-collector-docker
+    deploy:
+      restart_policy:
+        condition: on-failure
+    command: python3 /usr/src/app/viptela-collector.py
+    volumes:
+      - "./stats-collector-code:/usr/src/app"
+    environment:
+      - "TZ=Europe/Amsterdam"
+    networks:
+      - webnet
+networks:
+  webnet:

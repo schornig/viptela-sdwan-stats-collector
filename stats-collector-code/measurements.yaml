@@ -1,0 +1,168 @@
+#---------------------------------------------------------------------------------
+# These measurements corespond with default dashbords populated in grafana. 
+# More measurements can be easily added but the coresponding dashboards
+# need to be manually added in grafana. 
+# The collect code is independed of the number of measurements and type of KPIs. 
+#---------------------------------------------------------------------------------
+
+
+Measurements:
+
+    DeviceHardwareHealth:
+      active: True
+      collect_interval: 60
+      query_type: SimpleAPICall
+      query_data:
+        url_endpoint: device/hardwarehealth/detail
+        series_name: DeviceHardwareHealth
+        tags:
+            - host-name
+            - system-ip
+            - device-type
+            - device-model
+            - site-id
+            - uuid
+            - version
+        fields:
+            - memUsageDisplay
+            - cpuLoadDisplay
+  
+    DeviceSummary:
+      active: True
+      collect_interval: 60
+      query_type: SimpleAPICall
+      query_data:
+        url_endpoint: device
+        series_name: DeviceSummary
+        tags:
+            - host-name
+            - deviceId
+            - device-type
+            - device-model
+            - site-id
+            - uuid
+            - version
+        fields:
+            - reachability
+            - status
+            - certificateValidity
+            - controlConnections
+            - version
+            - state
+            - ompPeers
+            - bfdSessionsUp
+  
+    DeviceInterfaceStatistics:
+      active: True
+      collect_interval: 600
+      query_type: AggregateAPICall
+      query_data:
+        url_endpoint: statistics/interface
+        series_name: DeviceInterfaceStatistics
+        stats_interval: 30 
+        tags:
+            - host_name
+            - vdevice_name
+            - device_model
+            - admin_status
+            - oper_status
+            - interface
+            - vpn_id
+        fields:
+            - rx_drops
+            - rx_errors
+            - rx_kbps
+            - rx_octets
+            - rx_pkts
+            - rx_pps
+            - tx_drops
+            - tx_errors
+            - tx_kbps
+            - tx_octets
+            - tx_pkts
+            - tx_pps
+  
+    DeviceSystemStatusStats:
+      active: True
+      collect_interval: 600
+      query_type: BulkAPICall
+      query_data:
+        url_endpoint: data/device/statistics/devicesystemstatusstatistics
+        series_name: DeviceSystemStatusStats
+        stats_interval: 30
+        tags:
+            - host_name
+            - vdevice_name
+            - device_model
+        fields:
+            - mem_used
+            - mem_cached
+            - mem_buffers
+            - mem_free
+            - disk_avail
+            - disk_used
+            - totalp
+            - runningp
+            - mem_util
+            - min1_avg
+            - min5_avg
+            - min15_avg
+            - cpu_min1_avg
+            - cpu_min5_avg
+            - cpu_min15_avg
+            - cpu_user
+            - cpu_idle
+            - cpu_system
+            - cpu_user_new
+  
+    AppRouteStatsStatistics:
+      active: True
+      collect_interval: 90
+      query_type: AggregateAPICall
+      query_data:
+        url_endpoint: statistics/approute
+        series_name: AppRouteStatsStatistics
+        stats_interval: 30 
+        tags:
+            - host_name
+            - vdevice_name
+            - device_model
+            - local_color
+            - name
+        fields:
+            - vqoe_score
+            - state
+            - tx_octets
+            - tx_pkts
+            - rx_octets
+            - rx_pkts
+            - latency
+            - loss
+            - loss_percentage
+            - jitter
+  
+    DPIStatistics:
+      active: True
+      collect_interval: 600
+      query_type: AggregateAPICall
+      query_data:
+        url_endpoint: statistics/dpi
+        series_name: DPIStatistics
+        stats_interval: 30
+        tags:
+            - host_name
+            - vdevice_name
+            - device_model
+            - local_color
+            - source_ip
+            - dest_ip
+            - source_port
+  #          - remote_system_ip // To be fixed at a later date
+            - device_family
+            - application
+            - dest_port
+            - vpn_id
+            - ip_proto
+        fields:
+            - packets
+            - octets
