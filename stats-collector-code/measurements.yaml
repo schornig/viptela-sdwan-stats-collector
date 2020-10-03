@@ -117,12 +117,12 @@ Measurements:
   
     AppRouteStatsStatistics:
       active: True
-      collect_interval: 90
+      collect_interval: 600
       query_type: AggregateAPICall
       query_data:
         url_endpoint: statistics/approute
         series_name: AppRouteStatsStatistics
-        stats_interval: 30 
+        stats_interval: 30
         tags:
             - host_name
             - vdevice_name
