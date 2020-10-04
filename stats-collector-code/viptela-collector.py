@@ -233,10 +233,10 @@ def TaskScheduller(vm=None, db=None, measurements=None):
     for collect_interval, measurements_list in tsort_measurements.items():
         current_time_sec = int(time())
         if current_time_sec % collect_interval == 0:
-            vm.Connect()
-            db.Connect()
+            #vm.Connect()
+            #db.Connect()
             data_points = list()
-            logging.log(25, 'Collection loop interval={} @ {}'.format(collect_interval, datetime.now()))
+            logging.log(25, 'Collection loop interval={} seconds @ {}'.format(collect_interval, datetime.now()))
             for entry in measurements_list:
                 query_data = entry['query_data']
                 query_type = entry['query_type']
@@ -250,26 +250,32 @@ def main():
 
     config_file = 'credentials.yaml'
     with open(config_file, 'r') as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
     
+    # Wait 60 seconds after container started before trying to initiate connections to vManage or InfluxDB
+    # Also protecs agaings spamming vManage and vSmart with connection requests should we have a problem with stats processing.
+    sleep(60)
+
     influx_db = influxAgent(config=config['influxdb'])
+    influx_db.Connect()
     #influx_db.Connect(clean=True)
     vManage_API = vManageStatsCollector(config=config['vManage'])
-        
-    tl = Timeloop()
+    vManage_API.Connect()
 
-    @tl.job(interval=timedelta(seconds=1))
     def Periodic_1s():
         # Update measurement list
         config_file = 'measurements.yaml'
         with open(config_file, 'r') as f:
-            config = yaml.load(f)
+            config = yaml.safe_load(f)
 
         # Run API Calls
         TaskScheduller(vm=vManage_API, db=influx_db, measurements=config['Measurements'])
 
-    Periodic_1s()
-    tl.start(block=True)
+    while True:
+        # Periodic loop to check if we need to run any measurements
+        Periodic_1s()
+        sleep(1)
+
 
 
 if __name__ == '__main__':
