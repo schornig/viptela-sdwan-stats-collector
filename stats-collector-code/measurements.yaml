@@ -10,7 +10,7 @@ Measurements:
 
     DeviceHardwareHealth:
       active: True
-      collect_interval: 60
+      collect_interval: 20
       query_type: SimpleAPICall
       query_data:
         url_endpoint: device/hardwarehealth/detail
@@ -29,7 +29,7 @@ Measurements:
   
     DeviceSummary:
       active: True
-      collect_interval: 60
+      collect_interval: 20
       query_type: SimpleAPICall
       query_data:
         url_endpoint: device
@@ -54,7 +54,7 @@ Measurements:
   
     DeviceInterfaceStatistics:
       active: True
-      collect_interval: 600
+      collect_interval: 45
       query_type: AggregateAPICall
       query_data:
         url_endpoint: statistics/interface
@@ -84,7 +84,7 @@ Measurements:
   
     DeviceSystemStatusStats:
       active: True
-      collect_interval: 600
+      collect_interval: 45
       query_type: BulkAPICall
       query_data:
         url_endpoint: data/device/statistics/devicesystemstatusstatistics
@@ -117,7 +117,7 @@ Measurements:
   
     AppRouteStatsStatistics:
       active: True
-      collect_interval: 600
+      collect_interval: 45
       query_type: AggregateAPICall
       query_data:
         url_endpoint: statistics/approute
@@ -143,7 +143,7 @@ Measurements:
   
     DPIStatistics:
       active: True
-      collect_interval: 600
+      collect_interval: 45
       query_type: AggregateAPICall
       query_data:
         url_endpoint: statistics/dpi

@@ -53,7 +53,8 @@ class vManageStatsCollector(object):
             tags['host'] = self.vM_ip
             tags['region'] = self.vM_desc
             for tag in query_data['tags']:
-                tags[tag.replace('-', '_')] = entry[tag]
+                if tag in entry:
+                    tags[tag.replace('-', '_')] = entry[tag]
 
             for field in query_data['fields']:
                 if field in entry and entry[field] != '--':
@@ -196,11 +197,14 @@ def setType(field_name, field_data, field_map):
 
     field_type = [entry['dataType'] for entry in field_map if entry['property'] == field_name]
 
-    if '(' in field_data:
-        field_data =field_data.split(' (')[0]
-
     if field_type:
         field_type = field_type.pop()
+        try:
+            if '(' in field_data and field_type == 'numberStr':
+                field_data =field_data.split(' (')[0]
+        except TypeError:
+            pass
+        
         if field_type == 'numberStr' or field_type == 'double':
             return float(field_data)
         elif field_type == 'number':

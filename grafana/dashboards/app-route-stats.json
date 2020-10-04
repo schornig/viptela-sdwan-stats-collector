@@ -15,8 +15,7 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 4,
-    "iteration": 1601740046837,
+    "iteration": 1601802498864,
     "links": [],
     "panels": [
       {
@@ -26,6 +25,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -199,6 +204,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -445,6 +456,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -705,6 +722,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -867,6 +890,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1043,6 +1072,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1205,6 +1240,12 @@
         "dashes": false,
         "datasource": null,
         "decimals": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1362,7 +1403,7 @@
       }
     ],
     "refresh": "5m",
-    "schemaVersion": 22,
+    "schemaVersion": 25,
     "style": "dark",
     "tags": [],
     "templating": {
@@ -1370,6 +1411,7 @@
         {
           "allValue": null,
           "current": {
+            "selected": true,
             "text": "All",
             "value": [
               "$__all"
@@ -1379,99 +1421,12 @@
           "definition": "SHOW TAG VALUES WITH KEY = \"host_name\"",
           "hide": 0,
           "includeAll": true,
-          "index": -1,
           "label": null,
           "multi": true,
           "name": "host_name",
-          "options": [
-            {
-              "selected": true,
-              "text": "All",
-              "value": "$__all"
-            },
-            {
-              "selected": false,
-              "text": "vSmart-02-MUC-Lab",
-              "value": "vSmart-02-MUC-Lab"
-            },
-            {
-              "selected": false,
-              "text": "vSmart-01-MUC-Lab",
-              "value": "vSmart-01-MUC-Lab"
-            },
-            {
-              "selected": false,
-              "text": "vManage-MUC-Lab",
-              "value": "vManage-MUC-Lab"
-            },
-            {
-              "selected": false,
-              "text": "vBond-MUC-Lab",
-              "value": "vBond-MUC-Lab"
-            },
-            {
-              "selected": false,
-              "text": "dc-muc-200-rt02",
-              "value": "dc-muc-200-rt02"
-            },
-            {
-              "selected": false,
-              "text": "dc-muc-200-rt01",
-              "value": "dc-muc-200-rt01"
-            },
-            {
-              "selected": false,
-              "text": "dc-lon-204-rt02",
-              "value": "dc-lon-204-rt02"
-            },
-            {
-              "selected": false,
-              "text": "dc-lon-204-rt01",
-              "value": "dc-lon-204-rt01"
-            },
-            {
-              "selected": false,
-              "text": "dc-ams-202-rt02",
-              "value": "dc-ams-202-rt02"
-            },
-            {
-              "selected": false,
-              "text": "dc-ams-202-rt01",
-              "value": "dc-ams-202-rt01"
-            },
-            {
-              "selected": false,
-              "text": "br-osl-212-rt01",
-              "value": "br-osl-212-rt01"
-            },
-            {
-              "selected": false,
-              "text": "br-mil-206-rt02",
-              "value": "br-mil-206-rt02"
-            },
-            {
-              "selected": false,
-              "text": "br-mil-206-rt01",
-              "value": "br-mil-206-rt01"
-            },
-            {
-              "selected": false,
-              "text": "br-mad-211-rt01",
-              "value": "br-mad-211-rt01"
-            },
-            {
-              "selected": false,
-              "text": "br-buc-208-rt02",
-              "value": "br-buc-208-rt02"
-            },
-            {
-              "selected": false,
-              "text": "br-buc-208-rt01",
-              "value": "br-buc-208-rt01"
-            }
-          ],
+          "options": [],
           "query": "SHOW TAG VALUES WITH KEY = \"host_name\"",
-          "refresh": 0,
+          "refresh": 1,
           "regex": "",
           "skipUrlSync": false,
           "sort": 6,
@@ -1484,6 +1439,7 @@
         {
           "allValue": null,
           "current": {
+            "selected": true,
             "text": "All",
             "value": [
               "$__all"
@@ -1493,34 +1449,12 @@
           "definition": "SHOW TAG VALUES WITH KEY = \"local_color\"",
           "hide": 0,
           "includeAll": true,
-          "index": -1,
           "label": null,
           "multi": true,
           "name": "local_color",
-          "options": [
-            {
-              "selected": true,
-              "text": "All",
-              "value": "$__all"
-            },
-            {
-              "selected": false,
-              "text": "mpls",
-              "value": "mpls"
-            },
-            {
-              "selected": false,
-              "text": "biz-internet",
-              "value": "biz-internet"
-            },
-            {
-              "selected": false,
-              "text": "--",
-              "value": "--"
-            }
-          ],
+          "options": [],
           "query": "SHOW TAG VALUES WITH KEY = \"local_color\"",
-          "refresh": 0,
+          "refresh": 1,
           "regex": "",
           "skipUrlSync": false,
           "sort": 6,
@@ -1533,6 +1467,7 @@
         {
           "allValue": null,
           "current": {
+            "selected": true,
             "text": "All",
             "value": [
               "$__all"
@@ -1542,13 +1477,12 @@
           "definition": "SHOW TAG VALUES WITH KEY = \"name\" WHERE host_name=~/$host_name/ AND local_color=~/$local_color/",
           "hide": 0,
           "includeAll": true,
-          "index": -1,
           "label": null,
           "multi": true,
           "name": "tunnel_name",
           "options": [],
           "query": "SHOW TAG VALUES WITH KEY = \"name\" WHERE host_name=~/$host_name/ AND local_color=~/$local_color/",
-          "refresh": 2,
+          "refresh": 1,
           "regex": "",
           "skipUrlSync": false,
           "sort": 0,
@@ -1566,7 +1500,6 @@
     },
     "timepicker": {
       "refresh_intervals": [
-        "5s",
         "10s",
         "30s",
         "1m",
@@ -1581,8 +1514,5 @@
     "timezone": "",
     "title": "Viptela SD-WAN - App Route Statistics",
     "uid": "rOSp-NEZk",
-    "variables": {
-      "list": []
-    },
-    "version": 3
+    "version": 1
   }
