@@ -4,6 +4,7 @@ version: "3"
 services:
   grafana:
     container_name: grafana-ui
+    restart: always
     image: grafana/grafana
     deploy:
       restart_policy:
@@ -22,6 +23,7 @@ services:
       - "./grafana/dashboards:/var/lib/grafana/dashboards"
   influxdb:
     container_name: influxdb-datasource
+    restart: always
     image: influxdb
     deploy:
       restart_policy:
@@ -37,6 +39,7 @@ services:
       - webnet
   collector:
     container_name: stats-collector
+    restart: always
     build:
       context: stats-collector-docker
     deploy:
