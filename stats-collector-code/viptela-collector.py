@@ -216,6 +216,11 @@ def setType(field_name, field_data, field_map):
     elif '_avg' in field_name:
         return float(field_data)
     elif 'ompPeers' in field_name:
+        try:
+            if '(' in field_data and field_type == 'numberStr':
+                field_data =field_data.split(' (')[0]
+        except TypeError:
+            pass
         return int(field_data)
     else:
         return field_data
