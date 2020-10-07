@@ -217,7 +217,7 @@ def setType(field_name, field_data, field_map):
         return float(field_data)
     elif 'ompPeers' in field_name:
         try:
-            if '(' in field_data and field_type == 'numberStr':
+            if '(' in field_data:
                 field_data =field_data.split(' (')[0]
         except TypeError:
             pass
