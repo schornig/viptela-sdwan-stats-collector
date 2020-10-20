@@ -1,0 +1,1278 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "iteration": 1603029457548,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 600,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "/RX/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "[RX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rx-pps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "[TX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "tx-pps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Interface PPS (Real Time)",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "decimals": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 600,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "/RX/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "[RX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rx-kbps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "[TX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "tx-kbps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Interface Bps (Real Time)",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "Kbits",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "Kbits",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 4,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 600,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:858",
+            "alias": "/RX/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "[RX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rx-errors"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "[TX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "tx-errors"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Interface Errors (Real Time)",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:865",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:866",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 5,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 600,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:1089",
+            "alias": "/RX/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "[RX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rx-drops"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "[TX] $tag_vdevice_host_name-$tag_vpn_id-$tag_ifname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "vpn_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "ifname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeInterfaceStats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "tx-drops"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vpn_id",
+                "operator": "=~",
+                "value": "/^$vpn_id$/"
+              },
+              {
+                "condition": "AND",
+                "key": "ifname",
+                "operator": "=~",
+                "value": "/^$ifname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Interface Drops (Real Time)",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1096",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1097",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 25,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB",
+          "definition": "SHOW TAG VALUES WITH KEY = \"vdevice_host_name\"",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "vdevice_host_name",
+          "options": [],
+          "query": "SHOW TAG VALUES WITH KEY = \"vdevice_host_name\"",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB",
+          "definition": "SHOW TAG VALUES WITH KEY = \"vpn_id\" WHERE vdevice_host_name=~/$vdevice_host_name/",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "vpn_id",
+          "options": [],
+          "query": "SHOW TAG VALUES WITH KEY = \"vpn_id\" WHERE vdevice_host_name=~/$vdevice_host_name/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB",
+          "definition": "SHOW TAG VALUES WITH KEY = \"ifname\" WHERE vdevice_host_name=~/$vdevice_host_name/ AND vpn_id=~/$vpn_id/",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "ifname",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "Cellular0/2/0",
+              "value": "Cellular0/2/0"
+            },
+            {
+              "selected": false,
+              "text": "Cellular0/2/1",
+              "value": "Cellular0/2/1"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/0/0",
+              "value": "GigabitEthernet0/0/0"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/0/1",
+              "value": "GigabitEthernet0/0/1"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/0",
+              "value": "GigabitEthernet0/1/0"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/1",
+              "value": "GigabitEthernet0/1/1"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/2",
+              "value": "GigabitEthernet0/1/2"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/3",
+              "value": "GigabitEthernet0/1/3"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/4",
+              "value": "GigabitEthernet0/1/4"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/5",
+              "value": "GigabitEthernet0/1/5"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/6",
+              "value": "GigabitEthernet0/1/6"
+            },
+            {
+              "selected": false,
+              "text": "GigabitEthernet0/1/7",
+              "value": "GigabitEthernet0/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Loopback10",
+              "value": "Loopback10"
+            },
+            {
+              "selected": false,
+              "text": "Loopback20",
+              "value": "Loopback20"
+            },
+            {
+              "selected": false,
+              "text": "Loopback200",
+              "value": "Loopback200"
+            },
+            {
+              "selected": false,
+              "text": "Loopback30",
+              "value": "Loopback30"
+            },
+            {
+              "selected": false,
+              "text": "Loopback65528",
+              "value": "Loopback65528"
+            },
+            {
+              "selected": false,
+              "text": "NVI0",
+              "value": "NVI0"
+            },
+            {
+              "selected": false,
+              "text": "Sdwan-system-intf",
+              "value": "Sdwan-system-intf"
+            },
+            {
+              "selected": false,
+              "text": "Tunnel0",
+              "value": "Tunnel0"
+            },
+            {
+              "selected": false,
+              "text": "Tunnel1",
+              "value": "Tunnel1"
+            },
+            {
+              "selected": false,
+              "text": "Tunnel100001",
+              "value": "Tunnel100001"
+            },
+            {
+              "selected": false,
+              "text": "Vlan1",
+              "value": "Vlan1"
+            },
+            {
+              "selected": false,
+              "text": "Vlan10",
+              "value": "Vlan10"
+            },
+            {
+              "selected": false,
+              "text": "Vlan20",
+              "value": "Vlan20"
+            },
+            {
+              "selected": false,
+              "text": "Vlan30",
+              "value": "Vlan30"
+            }
+          ],
+          "query": "SHOW TAG VALUES WITH KEY = \"ifname\" WHERE vdevice_host_name=~/$vdevice_host_name/ AND vpn_id=~/$vpn_id/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-3h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "Real-Time @ Interface-Stats",
+    "uid": "KGZwm6cGk",
+    "version": 3
+  }

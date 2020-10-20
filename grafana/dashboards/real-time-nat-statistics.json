@@ -1,0 +1,613 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 8,
+    "iteration": 1603025156375,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 600,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_vdevice_host_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "flows"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "NAT FLow Count",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 600,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_vdevice_host_name in2out-drops",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in2out-drops"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_vdevice_host_name out2in-drops",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "out2in-drops"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_vdevice_host_name limit-entry-add-fail",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "limit-entry-add-fail"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_vdevice_host_name mapping-stats-drop",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "mapping-stats-drop"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_vdevice_host_name pool-stats-drop",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "pool-stats-drop"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_vdevice_host_name packets-punted",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vdevice_host_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "RealTimeNatStatistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "packets-punted"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "vdevice_host_name",
+                "operator": "=~",
+                "value": "/^$vdevice_host_name$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "NAT Errors",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 25,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB",
+          "definition": "SHOW TAG VALUES WITH KEY = \"vdevice_host_name\"",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "vdevice_host_name",
+          "options": [],
+          "query": "SHOW TAG VALUES WITH KEY = \"vdevice_host_name\"",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "Real-Time @ Nat-Statistics",
+    "uid": "n_4nBRpGk",
+    "version": 3
+  }

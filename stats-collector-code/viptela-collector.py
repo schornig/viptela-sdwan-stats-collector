@@ -160,6 +160,47 @@ class vManageStatsCollector(object):
 
         return dataInflux
 
+    def RealTimeAPICall(self, query_data=None):
+
+        data = dict()
+
+        for device_id in query_data['deviceIDs']:
+            url = '{}?deviceId={}&&&'.format(query_data['url_endpoint'], device_id)
+            logging.log(25, 'Run API Call: {}.'.format(url))
+            ind_data = self.vManageSession.get_request(url)
+            if data :
+                data['data'] += ind_data['data']
+            else:
+                data = ind_data
+
+        dataInflux = list()
+
+        for entry in data['data']:
+
+            tags, fields = dict(), dict()
+
+            tags['host'] = self.vM_ip
+            tags['region'] = self.vM_desc
+            for tag in query_data['tags']:
+                if tag in entry:
+                    tags[tag.replace('-', '_')] = entry[tag]
+
+            for field in query_data['fields']:
+                if field in entry and entry[field] != '--':
+                    fields[field] = setType(field, entry[field], data['header']['fields'])
+
+            measurement = {'measurement': query_data['series_name'],
+                           'tags': tags,
+                           'time': datetime.now(timezone.utc),
+                           'fields': fields
+                            }
+
+            # Only update if we have valid data points
+            if fields:
+                dataInflux.append(measurement)
+
+        return dataInflux
+
 
 class influxAgent(object):
     def __init__(self, config=None):
@@ -210,6 +251,11 @@ def setType(field_name, field_data, field_map):
         elif field_type == 'number':
             return int(field_data)
         else:
+            # Blanket conversion to float
+            try:
+                field_data = float(field_data)
+            except:
+                pass
             return field_data
 
     # Not all fields have a dataType entry
@@ -273,8 +319,9 @@ def main():
         with open(config_file, 'r') as f:
             config = yaml.safe_load(f)
 
+        measurements = {k:v for (k,v) in config['Measurements'].items() if v['active'] == True}
         # Run API Calls
-        TaskScheduller(vm=vManage_API, db=influx_db, measurements=config['Measurements'])
+        TaskScheduller(vm=vManage_API, db=influx_db, measurements=measurements)
 
     while True:
         # Periodic loop to check if we need to run any measurements
