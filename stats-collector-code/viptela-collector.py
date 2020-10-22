@@ -168,7 +168,7 @@ class vManageStatsCollector(object):
             url = '{}?deviceId={}&&&'.format(query_data['url_endpoint'], device_id)
             logging.log(25, 'Run API Call: {}.'.format(url))
             ind_data = self.vManageSession.get_request(url)
-            if len(ind_data['data']) >= 1:
+            if ind_data['data']:
                 if data:
                     data['data'] += ind_data['data']
                 else:
@@ -178,29 +178,30 @@ class vManageStatsCollector(object):
 
         dataInflux = list()
 
-        for entry in data['data']:
+        if 'data' in data:
+            for entry in data['data']:
 
-            tags, fields = dict(), dict()
+                tags, fields = dict(), dict()
 
-            tags['host'] = self.vM_ip
-            tags['region'] = self.vM_desc
-            for tag in query_data['tags']:
-                if tag in entry:
-                    tags[tag.replace('-', '_')] = entry[tag]
+                tags['host'] = self.vM_ip
+                tags['region'] = self.vM_desc
+                for tag in query_data['tags']:
+                    if tag in entry:
+                        tags[tag.replace('-', '_')] = entry[tag]
 
-            for field in query_data['fields']:
-                if field in entry and entry[field] != '--':
-                    fields[field] = setType(field, entry[field], data['header']['fields'])
+                for field in query_data['fields']:
+                    if field in entry and entry[field] != '--':
+                        fields[field] = setType(field, entry[field], data['header']['fields'])
 
-            measurement = {'measurement': query_data['series_name'],
-                           'tags': tags,
-                           'time': datetime.now(timezone.utc),
-                           'fields': fields
-                            }
+                measurement = {'measurement': query_data['series_name'],
+                            'tags': tags,
+                            'time': datetime.now(timezone.utc),
+                            'fields': fields
+                                }
 
-            # Only update if we have valid data points
-            if fields:
-                dataInflux.append(measurement)
+                # Only update if we have valid data points
+                if fields:
+                    dataInflux.append(measurement)
 
         return dataInflux
 
