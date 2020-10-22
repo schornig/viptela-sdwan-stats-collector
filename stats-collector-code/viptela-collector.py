@@ -168,7 +168,7 @@ class vManageStatsCollector(object):
             url = '{}?deviceId={}&&&'.format(query_data['url_endpoint'], device_id)
             logging.log(25, 'Run API Call: {}.'.format(url))
             ind_data = self.vManageSession.get_request(url)
-            if ind_data['data']:
+            if 'data' in ind_data:
                 if data:
                     data['data'] += ind_data['data']
                 else:
