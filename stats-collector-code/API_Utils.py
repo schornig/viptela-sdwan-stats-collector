@@ -3,6 +3,8 @@ import requests
 import json
 import logging
 import sys
+from datetime import datetime
+
 
 logging.addLevelName(25, "__INFO__")
 logging.basicConfig(stream=sys.stdout,
@@ -50,10 +52,15 @@ class ViptelaRestApiLib:
     def get_request(self, mount_point):
         """GET request"""
         url = "https://%s/dataservice/%s"%(self.vmanage_ip, mount_point)
+        
+        start = datetime.now()
 
         response = self.session.get(url, headers=self.headers, verify=False)
         #response.raise_for_status()
         data = response.content
+        end = datetime.now()
+        response_time = end - start
+        logging.log(25, 'GET Request for URL: {} | Response Time: {}'.format(url, response_time.total_seconds()))
 
         return json.loads(data)
 

@@ -8,8 +8,8 @@ import yaml
 import json
 from influxdb import InfluxDBClient
 from datetime import datetime, timedelta, timezone
-from timeloop import Timeloop
 from time import sleep, time
+
 
 import urllib3
 urllib3.disable_warnings()
@@ -21,6 +21,9 @@ logging.addLevelName(25, '__INFO__')
 logging.basicConfig(stream=sys.stdout,
                     format='%(asctime)s: %(module)s [%(funcName)20s] [%(process)s] [%(levelname)s]: %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S')
+
+
+
 
 class vManageStatsCollector(object):
     def __init__(self, config=None):
@@ -177,6 +180,7 @@ class vManageStatsCollector(object):
                 logging.log(25, 'No data points found for {}.'.format(url))
 
         dataInflux = list()
+        pp(data)
 
         if 'data' in data:
             for entry in data['data']:
@@ -195,7 +199,7 @@ class vManageStatsCollector(object):
 
                 measurement = {'measurement': query_data['series_name'],
                             'tags': tags,
-                            'time': datetime.now(timezone.utc),
+                            'time': datetime.fromtimestamp(entry['lastupdated']/1000, tz=timezone.utc),
                             'fields': fields
                                 }
 
@@ -288,8 +292,8 @@ def TaskScheduller(vm=None, db=None, measurements=None):
     for collect_interval, measurements_list in tsort_measurements.items():
         current_time_sec = int(time())
         if current_time_sec % collect_interval == 0:
-            #vm.Connect()
-            #db.Connect()
+            vm.Connect()
+            db.Connect()
             data_points = list()
             logging.log(25, 'Collection loop interval={} seconds @ {}'.format(collect_interval, datetime.now()))
             for entry in measurements_list:
