@@ -180,7 +180,7 @@ class vManageStatsCollector(object):
                 logging.log(25, 'No data points found for {}.'.format(url))
 
         dataInflux = list()
-        pp(data)
+        #pp(data)
 
         if 'data' in data:
             for entry in data['data']:
