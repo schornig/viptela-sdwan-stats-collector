@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1601802423034,
+  "iteration": 1604165631760,
   "links": [],
   "panels": [
     {
@@ -48,13 +48,13 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 12,
+        "h": 13,
         "w": 24,
         "x": 0,
         "y": 1
       },
       "hiddenSeries": false,
-      "id": 4,
+      "id": 2,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -65,7 +65,7 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sideWidth": 530,
+        "sideWidth": 550,
         "sort": "avg",
         "sortDesc": true,
         "total": false,
@@ -73,7 +73,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -96,6 +96,7 @@
       "targets": [
         {
           "alias": "$tag_host_name $tag_interface [RX]",
+          "datasource": "InfluxDB",
           "groupBy": [
             {
               "params": [
@@ -117,7 +118,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -126,21 +127,19 @@
           "measurement": "DeviceInterfaceStatistics",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT distinct(\"rx_pps\") FROM \"AggregatedStatisticsInterface\" WHERE (\"interface\" =~ /^$InterfaceName$/ AND \"hostname\" =~ /^$host$/) AND $timeFilter GROUP BY time($__interval), \"hostname\", \"interface\" fill(linear)",
-          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "rx_pps"
+                  "rx_kbps"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -160,6 +159,7 @@
         },
         {
           "alias": "$tag_host_name $tag_interface [TX]",
+          "datasource": "InfluxDB",
           "groupBy": [
             {
               "params": [
@@ -181,7 +181,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -196,13 +196,13 @@
             [
               {
                 "params": [
-                  "tx_pps"
+                  "tx_kbps"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -225,7 +225,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Interface PPS (10m avg)",
+      "title": "Interface Average Bps",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -242,7 +242,7 @@
       "yaxes": [
         {
           "decimals": 0,
-          "format": "pps",
+          "format": "Kbits",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -251,7 +251,7 @@
         },
         {
           "decimals": 0,
-          "format": "pps",
+          "format": "Kbits",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -280,13 +280,14 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 13,
+        "h": 12,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "hiddenSeries": false,
-      "id": 2,
+      "id": 4,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -297,7 +298,7 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sideWidth": 550,
+        "sideWidth": 530,
         "sort": "avg",
         "sortDesc": true,
         "total": false,
@@ -305,7 +306,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -328,7 +329,6 @@
       "targets": [
         {
           "alias": "$tag_host_name $tag_interface [RX]",
-          "datasource": "InfluxDB",
           "groupBy": [
             {
               "params": [
@@ -350,7 +350,7 @@
             },
             {
               "params": [
-                "linear"
+                "none"
               ],
               "type": "fill"
             }
@@ -359,19 +359,21 @@
           "measurement": "DeviceInterfaceStatistics",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT distinct(\"rx_pps\") FROM \"AggregatedStatisticsInterface\" WHERE (\"interface\" =~ /^$InterfaceName$/ AND \"hostname\" =~ /^$host$/) AND $timeFilter GROUP BY time($__interval), \"hostname\", \"interface\" fill(linear)",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "rx_kbps"
+                  "rx_pps"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -391,7 +393,6 @@
         },
         {
           "alias": "$tag_host_name $tag_interface [TX]",
-          "datasource": "InfluxDB",
           "groupBy": [
             {
               "params": [
@@ -413,7 +414,7 @@
             },
             {
               "params": [
-                "linear"
+                "none"
               ],
               "type": "fill"
             }
@@ -428,13 +429,13 @@
             [
               {
                 "params": [
-                  "tx_kbps"
+                  "tx_pps"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -457,7 +458,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Interface Kbps (30m avg)",
+      "title": "Interface Avg PPS",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -474,7 +475,7 @@
       "yaxes": [
         {
           "decimals": 0,
-          "format": "Kbits",
+          "format": "pps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -483,12 +484,12 @@
         },
         {
           "decimals": 0,
-          "format": "Kbits",
+          "format": "pps",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -533,6 +534,7 @@
       },
       "hiddenSeries": false,
       "id": 10,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -549,7 +551,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -593,7 +595,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -616,7 +618,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -657,7 +659,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -678,7 +680,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -701,7 +703,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Interface Drops(30m avg)",
+      "title": "Interface Drops (Packets)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -732,7 +734,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -779,7 +781,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -823,7 +825,7 @@
             },
             {
               "params": [
-                "linear"
+                "none"
               ],
               "type": "fill"
             }
@@ -887,7 +889,7 @@
             },
             {
               "params": [
-                "linear"
+                "none"
               ],
               "type": "fill"
             }
@@ -931,7 +933,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Interface Errors (30m avg)",
+      "title": "Interface Errors",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -962,7 +964,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -972,7 +974,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 25,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -980,7 +982,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1008,7 +1010,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"
@@ -1036,7 +1037,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"

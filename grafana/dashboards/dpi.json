@@ -1,1064 +1,654 @@
 {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": "-- Grafana --",
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "type": "dashboard"
-        }
-      ]
-    },
-    "editable": true,
-    "gnetId": null,
-    "graphTooltip": 0,
-    "id": 5,
-    "iteration": 1601751867510,
-    "links": [],
-    "panels": [
+  "annotations": {
+    "list": [
       {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 9,
-        "panels": [],
-        "title": "DPI Stats @ 1 Min Rate",
-        "type": "row"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "InfluxDB",
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 1
-        },
-        "hiddenSeries": false,
-        "id": 4,
-        "interval": "5s",
-        "legend": {
-          "alignAsTable": true,
-          "avg": false,
-          "current": false,
-          "hideEmpty": true,
-          "hideZero": true,
-          "max": true,
-          "min": false,
-          "show": true,
-          "sort": "max",
-          "sortDesc": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": true,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "$tag_host_name -> VPN: $tag_vpn_id -> App: $tag_application",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "host_name"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "application"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "vpn_id"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "hide": false,
-            "measurement": "DPIStatistics",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT moving_average(sum(\"octets\"), 30)  / $__interval_ms  *  8 * 1000 FROM \"DPIStatistics\" WHERE (\"host_name\" =~ /^$host_name$/ AND \"vpn_id\" =~ /^$vpn_id$/ AND \"local_color\" =~ /^$local_color$/ AND \"ip_proto\" =~ /^$ip_proto$/ AND \"application\" =~ /^$application$/ AND \"source_ip\" =~ /^$source_ip$/ AND \"dest_ip\" =~ /^$dest_ip$/) AND $timeFilter GROUP BY time($__interval), \"host_name\", \"application\", \"vpn_id\" fill(null)",
-            "rawQuery": false,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "octets"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "sum"
-                },
-                {
-                  "params": [
-                    "30"
-                  ],
-                  "type": "moving_average"
-                },
-                {
-                  "params": [
-                    " / $__interval_ms  *  8 * 1000"
-                  ],
-                  "type": "math"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host_name",
-                "operator": "=~",
-                "value": "/^$host_name$/"
-              },
-              {
-                "condition": "AND",
-                "key": "vpn_id",
-                "operator": "=~",
-                "value": "/^$vpn_id$/"
-              },
-              {
-                "condition": "AND",
-                "key": "local_color",
-                "operator": "=~",
-                "value": "/^$local_color$/"
-              },
-              {
-                "condition": "AND",
-                "key": "ip_proto",
-                "operator": "=~",
-                "value": "/^$ip_proto$/"
-              },
-              {
-                "condition": "AND",
-                "key": "application",
-                "operator": "=~",
-                "value": "/^$application$/"
-              },
-              {
-                "condition": "AND",
-                "key": "source_ip",
-                "operator": "=~",
-                "value": "/^$source_ip$/"
-              },
-              {
-                "condition": "AND",
-                "key": "dest_ip",
-                "operator": "=~",
-                "value": "/^$dest_ip$/"
-              }
-            ]
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "DPI Statistics BPS",
-        "tooltip": {
-          "shared": true,
-          "sort": 2,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "decimals": null,
-            "format": "Bps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          },
-          {
-            "decimals": null,
-            "format": "Bps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": null,
-        "decimals": 1,
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 11
-        },
-        "hiddenSeries": false,
-        "id": 5,
-        "interval": "5s",
-        "legend": {
-          "alignAsTable": true,
-          "avg": false,
-          "current": false,
-          "hideEmpty": true,
-          "hideZero": true,
-          "max": true,
-          "min": false,
-          "show": true,
-          "sort": "max",
-          "sortDesc": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": true,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "$tag_host_name -> VPN: $tag_vpn_id -> App: $tag_application",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "host_name"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "vpn_id"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "application"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "hide": false,
-            "measurement": "DPIStatistics",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT moving_average(sum(\"packets\"), 30)  / $__interval_ms  *  8 * 1000 FROM \"DPIStatistics\" WHERE (\"host_name\" =~ /^$host_name$/ AND \"vpn_id\" =~ /^$vpn_id$/ AND \"local_color\" =~ /^$local_color$/ AND \"ip_proto\" =~ /^$ip_proto$/ AND \"application\" =~ /^$application$/ AND \"source_ip\" =~ /^$source_ip$/ AND \"dest_ip\" =~ /^$dest_ip$/) AND $timeFilter GROUP BY time($__interval), \"host_name\", \"application\", \"vpn_id\" fill(null)",
-            "rawQuery": false,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "packets"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "sum"
-                },
-                {
-                  "params": [
-                    "30"
-                  ],
-                  "type": "moving_average"
-                },
-                {
-                  "params": [
-                    "  / $__interval_ms * 8 * 1000"
-                  ],
-                  "type": "math"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "vpn_id",
-                "operator": "=~",
-                "value": "/^$vpn_id$/"
-              },
-              {
-                "condition": "AND",
-                "key": "local_color",
-                "operator": "=~",
-                "value": "/^$local_color$/"
-              },
-              {
-                "condition": "AND",
-                "key": "ip_proto",
-                "operator": "=~",
-                "value": "/^$ip_proto$/"
-              },
-              {
-                "condition": "AND",
-                "key": "application",
-                "operator": "=~",
-                "value": "/^$application$/"
-              },
-              {
-                "condition": "AND",
-                "key": "source_ip",
-                "operator": "=~",
-                "value": "/^$source_ip$/"
-              },
-              {
-                "condition": "AND",
-                "key": "dest_ip",
-                "operator": "=~",
-                "value": "/^$dest_ip$/"
-              }
-            ]
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "DPI Statistics PPS",
-        "tooltip": {
-          "shared": true,
-          "sort": 2,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "decimals": 1,
-            "format": "pps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          },
-          {
-            "decimals": 1,
-            "format": "pps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 21
-        },
-        "id": 7,
-        "panels": [],
-        "title": "DPI Stats Cumulative",
-        "type": "row"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "InfluxDB",
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 22
-        },
-        "hiddenSeries": false,
-        "id": 2,
-        "interval": "5s",
-        "legend": {
-          "alignAsTable": true,
-          "avg": true,
-          "current": false,
-          "max": true,
-          "min": false,
-          "show": true,
-          "sort": "total",
-          "sortDesc": true,
-          "total": true,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": true,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "$tag_host_name -> VPN: $tag_vpn_id -> App: $tag_application",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "host_name"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "vpn_id"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "application"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "hide": false,
-            "measurement": "DPIStatistics",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT moving_average(sum(\"packets\"), 30) FROM \"DPIStatistics\" WHERE (\"host_name\" =~ /^$host_name$/ AND \"vpn_id\" =~ /^$vpn_id$/ AND \"local_color\" =~ /^$local_color$/ AND \"ip_proto\" =~ /^$ip_proto$/ AND \"application\" =~ /^$application$/ AND \"source_ip\" =~ /^$source_ip$/ AND \"dest_ip\" =~ /^$dest_ip$/) AND $timeFilter GROUP BY time($__interval), \"host_name\", \"application\", \"vpn_id\" fill(null)",
-            "rawQuery": false,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "packets"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "sum"
-                },
-                {
-                  "params": [
-                    "30"
-                  ],
-                  "type": "moving_average"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host_name",
-                "operator": "=~",
-                "value": "/^$host_name$/"
-              },
-              {
-                "condition": "AND",
-                "key": "vpn_id",
-                "operator": "=~",
-                "value": "/^$vpn_id$/"
-              },
-              {
-                "condition": "AND",
-                "key": "local_color",
-                "operator": "=~",
-                "value": "/^$local_color$/"
-              },
-              {
-                "condition": "AND",
-                "key": "ip_proto",
-                "operator": "=~",
-                "value": "/^$ip_proto$/"
-              },
-              {
-                "condition": "AND",
-                "key": "application",
-                "operator": "=~",
-                "value": "/^$application$/"
-              },
-              {
-                "condition": "AND",
-                "key": "source_ip",
-                "operator": "=~",
-                "value": "/^$source_ip$/"
-              },
-              {
-                "condition": "AND",
-                "key": "dest_ip",
-                "operator": "=~",
-                "value": "/^$dest_ip$/"
-              }
-            ]
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "DPI Statistics Packets @ Cumulative",
-        "tooltip": {
-          "shared": true,
-          "sort": 2,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "InfluxDB",
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 32
-        },
-        "hiddenSeries": false,
-        "id": 3,
-        "interval": "5s",
-        "legend": {
-          "alignAsTable": true,
-          "avg": true,
-          "current": true,
-          "hideEmpty": true,
-          "hideZero": true,
-          "max": true,
-          "min": true,
-          "show": true,
-          "sort": "total",
-          "sortDesc": true,
-          "total": true,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": true,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "$tag_host_name -> VPN: $tag_vpn_id -> App: $tag_application",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "host_name"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "vpn_id"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "application"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "DPIStatistics",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT moving_average(sum(\"octets\"), 30) FROM \"DPIStatistics\" WHERE (\"host_name\" =~ /^$host_name$/ AND \"vpn_id\" =~ /^$vpn_id$/ AND \"local_color\" =~ /^$local_color$/ AND \"ip_proto\" =~ /^$ip_proto$/ AND \"application\" =~ /^$application$/ AND \"source_ip\" =~ /^$source_ip$/ AND \"dest_ip\" =~ /^$dest_ip$/) AND $timeFilter GROUP BY time($__interval), \"host_name\", \"application\", \"vpn_id\" fill(null)",
-            "rawQuery": false,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "octets"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "sum"
-                },
-                {
-                  "params": [
-                    "30"
-                  ],
-                  "type": "moving_average"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host_name",
-                "operator": "=~",
-                "value": "/^$host_name$/"
-              },
-              {
-                "condition": "AND",
-                "key": "vpn_id",
-                "operator": "=~",
-                "value": "/^$vpn_id$/"
-              },
-              {
-                "condition": "AND",
-                "key": "local_color",
-                "operator": "=~",
-                "value": "/^$local_color$/"
-              },
-              {
-                "condition": "AND",
-                "key": "ip_proto",
-                "operator": "=~",
-                "value": "/^$ip_proto$/"
-              },
-              {
-                "condition": "AND",
-                "key": "application",
-                "operator": "=~",
-                "value": "/^$application$/"
-              },
-              {
-                "condition": "AND",
-                "key": "source_ip",
-                "operator": "=~",
-                "value": "/^$source_ip$/"
-              },
-              {
-                "condition": "AND",
-                "key": "dest_ip",
-                "operator": "=~",
-                "value": "/^$dest_ip$/"
-              }
-            ]
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "DPI Statistics Bytes @ Cumulative",
-        "tooltip": {
-          "shared": true,
-          "sort": 2,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "decbytes",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          },
-          {
-            "format": "decbytes",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": "0",
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
       }
-    ],
-    "refresh": "5m",
-    "schemaVersion": 22,
-    "style": "dark",
-    "tags": [],
-    "templating": {
-      "list": [
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1604166223485,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "panels": [],
+      "title": "DPI Stats @ 1 Min Rate",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "interval": "1m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "6.5.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
+          "alias": "$tag_host_name -> VPN: $tag_vpn_id -> App: $tag_application",
+          "groupBy": [
+            {
+              "params": [
+                "1m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "host_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "application"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "vpn_id"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "DPIStatistics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT moving_average(sum(\"octets\"), 30)  / $__interval_ms  *  8 * 1000 FROM \"DPIStatistics\" WHERE (\"host_name\" =~ /^$host_name$/ AND \"vpn_id\" =~ /^$vpn_id$/ AND \"local_color\" =~ /^$local_color$/ AND \"ip_proto\" =~ /^$ip_proto$/ AND \"application\" =~ /^$application$/ AND \"source_ip\" =~ /^$source_ip$/ AND \"dest_ip\" =~ /^$dest_ip$/) AND $timeFilter GROUP BY time($__interval), \"host_name\", \"application\", \"vpn_id\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "octets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "*8/60"
+                ],
+                "type": "math"
+              }
             ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"host_name\"",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "host_name",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"host_name\"",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 5,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
-        },
-        {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"vpn_id\" WHERE host_name=~/$host_name/",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "vpn_id",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"vpn_id\" WHERE host_name=~/$host_name/",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
-        },
-        {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"local_color\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "local_color",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"local_color\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
-        },
-        {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"ip_proto\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "ip_proto",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"ip_proto\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 5,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
-        },
-        {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"application\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "application",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"application\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
-        },
-        {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"source_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application =~/$application/",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "source_ip",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"source_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application =~/$application/",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
-        },
-        {
-          "allValue": null,
-          "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
-          },
-          "datasource": "InfluxDB",
-          "definition": "SHOW TAG VALUES WITH KEY = \"dest_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application=~/$application/ AND source_ip=~/$source_ip/",
-          "hide": 0,
-          "includeAll": true,
-          "index": -1,
-          "label": null,
-          "multi": true,
-          "name": "dest_ip",
-          "options": [],
-          "query": "SHOW TAG VALUES WITH KEY = \"dest_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application=~/$application/ AND source_ip=~/$source_ip/",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
+          ],
+          "tags": [
+            {
+              "key": "host_name",
+              "operator": "=~",
+              "value": "/^$host_name$/"
+            },
+            {
+              "condition": "AND",
+              "key": "vpn_id",
+              "operator": "=~",
+              "value": "/^$vpn_id$/"
+            },
+            {
+              "condition": "AND",
+              "key": "local_color",
+              "operator": "=~",
+              "value": "/^$local_color$/"
+            },
+            {
+              "condition": "AND",
+              "key": "ip_proto",
+              "operator": "=~",
+              "value": "/^$ip_proto$/"
+            },
+            {
+              "condition": "AND",
+              "key": "application",
+              "operator": "=~",
+              "value": "/^$application$/"
+            },
+            {
+              "condition": "AND",
+              "key": "source_ip",
+              "operator": "=~",
+              "value": "/^$source_ip$/"
+            },
+            {
+              "condition": "AND",
+              "key": "dest_ip",
+              "operator": "=~",
+              "value": "/^$dest_ip$/"
+            }
+          ]
         }
-      ]
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DPI Statistics BPS",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
-    "time": {
-      "from": "now-24h",
-      "to": "now"
-    },
-    "timepicker": {
-      "refresh_intervals": [
-        "5s",
-        "10s",
-        "30s",
-        "1m",
-        "5m",
-        "15m",
-        "30m",
-        "1h",
-        "2h",
-        "1d"
-      ]
-    },
-    "timezone": "",
-    "title": "SD-WAN Statistics - DPI",
-    "uid": "5uJ6jNEZz",
-    "variables": {
-      "list": []
-    },
-    "version": 30
-  }
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 1,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "interval": "1m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_host_name -> VPN: $tag_vpn_id -> App: $tag_application",
+          "groupBy": [
+            {
+              "params": [
+                "1m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "host_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "vpn_id"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "application"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "DPIStatistics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT moving_average(sum(\"packets\"), 30)  / $__interval_ms  *  8 * 1000 FROM \"DPIStatistics\" WHERE (\"host_name\" =~ /^$host_name$/ AND \"vpn_id\" =~ /^$vpn_id$/ AND \"local_color\" =~ /^$local_color$/ AND \"ip_proto\" =~ /^$ip_proto$/ AND \"application\" =~ /^$application$/ AND \"source_ip\" =~ /^$source_ip$/ AND \"dest_ip\" =~ /^$dest_ip$/) AND $timeFilter GROUP BY time($__interval), \"host_name\", \"application\", \"vpn_id\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "packets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "/60"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "vpn_id",
+              "operator": "=~",
+              "value": "/^$vpn_id$/"
+            },
+            {
+              "condition": "AND",
+              "key": "local_color",
+              "operator": "=~",
+              "value": "/^$local_color$/"
+            },
+            {
+              "condition": "AND",
+              "key": "ip_proto",
+              "operator": "=~",
+              "value": "/^$ip_proto$/"
+            },
+            {
+              "condition": "AND",
+              "key": "application",
+              "operator": "=~",
+              "value": "/^$application$/"
+            },
+            {
+              "condition": "AND",
+              "key": "source_ip",
+              "operator": "=~",
+              "value": "/^$source_ip$/"
+            },
+            {
+              "condition": "AND",
+              "key": "dest_ip",
+              "operator": "=~",
+              "value": "/^$dest_ip$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DPI Statistics PPS",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "pps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 1,
+          "format": "pps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 21,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "br-buc-208-rt01 + br-osl-212-rt01",
+          "value": [
+            "br-buc-208-rt01",
+            "br-osl-212-rt01"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"host_name\"",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "host_name",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"host_name\"",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"vpn_id\" WHERE host_name=~/$host_name/",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "vpn_id",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"vpn_id\" WHERE host_name=~/$host_name/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"local_color\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "local_color",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"local_color\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"ip_proto\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "ip_proto",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"ip_proto\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"application\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "application",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"application\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"source_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application =~/$application/",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "source_ip",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"source_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application =~/$application/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY = \"dest_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application=~/$application/ AND source_ip=~/$source_ip/",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "dest_ip",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"dest_ip\" WHERE host_name=~/$host_name/ AND vpn_id=~/$vpn_id/ AND local_color=~/$local_color/ AND ip_proto=~/$ip_proto/ AND application=~/$application/ AND source_ip=~/$source_ip/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "SD-WAN Statistics - DPI",
+  "uid": "5uJ6jNEZz",
+  "version": 1
+}

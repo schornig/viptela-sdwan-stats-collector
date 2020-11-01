@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1601802367950,
+  "iteration": 1604164938602,
   "links": [],
   "panels": [
     {
@@ -55,6 +55,7 @@
       },
       "hiddenSeries": false,
       "id": 4,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -73,7 +74,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -123,7 +124,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -202,6 +203,7 @@
       },
       "hiddenSeries": false,
       "id": 14,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -218,7 +220,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -268,7 +270,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -345,6 +347,7 @@
       },
       "hiddenSeries": false,
       "id": 16,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -363,7 +366,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -413,7 +416,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -506,6 +509,7 @@
       },
       "hiddenSeries": false,
       "id": 18,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -524,7 +528,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -574,7 +578,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -653,6 +657,7 @@
       },
       "hiddenSeries": false,
       "id": 20,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -671,7 +676,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -721,7 +726,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -814,6 +819,7 @@
       },
       "hiddenSeries": false,
       "id": 21,
+      "interval": "1m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -832,7 +838,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -882,7 +888,7 @@
               },
               {
                 "params": [],
-                "type": "distinct"
+                "type": "mean"
               }
             ]
           ],
@@ -1087,7 +1093,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 25,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1095,7 +1101,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"

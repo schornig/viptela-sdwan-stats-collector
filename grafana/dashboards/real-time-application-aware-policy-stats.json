@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 10,
-  "iteration": 1603175613420,
+  "iteration": 1604168408741,
   "links": [],
   "panels": [
     {
@@ -41,6 +40,7 @@
       },
       "hiddenSeries": false,
       "id": 2,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -121,15 +121,17 @@
               },
               {
                 "params": [],
-                "type": "distinct"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
+                "type": "mean"
               },
               {
                 "params": [
-                  " *8/ 30"
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
                 ],
                 "type": "math"
               }
@@ -160,7 +162,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "App Route Policy Match Stats (Real Time)",
+      "title": "App Route Policy Term Match (BPS)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -189,7 +191,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -299,17 +301,13 @@
               },
               {
                 "params": [],
-                "type": "distinct"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
+                "type": "mean"
               },
               {
                 "params": [
-                  " *8/ 30"
+                  "1s"
                 ],
-                "type": "math"
+                "type": "non_negative_derivative"
               }
             ]
           ],
@@ -338,7 +336,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "App Route Policy Match Stats (Real Time)",
+      "title": "App Route Policy Term Match (PPS)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -354,7 +352,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "pps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -367,7 +365,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -377,7 +375,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 25,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -385,7 +383,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -413,7 +411,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"
@@ -441,7 +438,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"
@@ -469,7 +465,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -488,5 +484,5 @@
   "timezone": "",
   "title": "Real-Time @ App Route Policy Stats",
   "uid": "pV588gpMk",
-  "version": 3
+  "version": 1
 }

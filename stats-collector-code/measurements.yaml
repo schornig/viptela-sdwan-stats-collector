@@ -199,7 +199,7 @@ Measurements:
 
     RealTimeInterfaceStats:
       active: True
-      collect_interval: 30
+      collect_interval: 10
       query_type: RealTimeAPICall
       query_data:
         url_endpoint: device/interface

@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 11,
-  "iteration": 1603175975466,
+  "iteration": 1604170185900,
   "links": [],
   "panels": [
     {
@@ -41,6 +40,7 @@
       },
       "hiddenSeries": false,
       "id": 2,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -132,15 +132,17 @@
               },
               {
                 "params": [],
-                "type": "distinct"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
+                "type": "mean"
               },
               {
                 "params": [
-                  "*8 / 30"
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
                 ],
                 "type": "math"
               }
@@ -227,15 +229,17 @@
               },
               {
                 "params": [],
-                "type": "distinct"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
+                "type": "mean"
               },
               {
                 "params": [
-                  "*8 / 30"
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
                 ],
                 "type": "math"
               }
@@ -272,7 +276,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "AAR Tunnel Bps (Real Time)",
+      "title": "AAR Tunnel Stats (BPS)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -402,7 +406,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -422,17 +426,13 @@
               },
               {
                 "params": [],
-                "type": "distinct"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
+                "type": "mean"
               },
               {
                 "params": [
-                  "/ 30"
+                  "1s"
                 ],
-                "type": "math"
+                "type": "non_negative_derivative"
               }
             ]
           ],
@@ -497,7 +497,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -517,17 +517,13 @@
               },
               {
                 "params": [],
-                "type": "distinct"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
+                "type": "mean"
               },
               {
                 "params": [
-                  "/ 30"
+                  "1s"
                 ],
-                "type": "math"
+                "type": "non_negative_derivative"
               }
             ]
           ],
@@ -562,7 +558,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "AAR Tunnel Bps (Real Time)",
+      "title": "AAR Tunnel Stats (PPS)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -601,7 +597,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 25,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -609,8 +605,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -638,7 +632,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"
@@ -666,7 +659,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"
@@ -694,7 +686,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "All",
           "value": [
             "$__all"
@@ -741,5 +732,5 @@
   "timezone": "",
   "title": "Real-Time @ Tunnel Statistics",
   "uid": "YSHS8WtGk",
-  "version": 2
+  "version": 1
 }

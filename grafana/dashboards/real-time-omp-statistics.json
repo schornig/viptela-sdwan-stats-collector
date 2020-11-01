@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1603027642304,
+  "iteration": 1604169921032,
   "links": [],
   "panels": [
     {
@@ -188,6 +188,7 @@
       },
       "hiddenSeries": false,
       "id": 7,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -216,7 +217,6 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:2993",
           "alias": "/sent/",
           "transform": "negative-Y"
         }
@@ -265,8 +265,10 @@
                 "type": "distinct"
               },
               {
-                "params": [],
-                "type": "non_negative_difference"
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
               }
             ]
           ],
@@ -318,8 +320,10 @@
                 "type": "distinct"
               },
               {
-                "params": [],
-                "type": "non_negative_difference"
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
               }
             ]
           ],
@@ -352,7 +356,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2886",
           "decimals": 0,
           "format": "short",
           "label": null,
@@ -362,7 +365,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2887",
           "decimals": 0,
           "format": "short",
           "label": null,
@@ -1359,7 +1361,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 25,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1367,8 +1369,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1415,5 +1415,5 @@
   "timezone": "",
   "title": "Real-Time @ OMP Statistics",
   "uid": "36sBLRtGz",
-  "version": 3
+  "version": 1
 }
