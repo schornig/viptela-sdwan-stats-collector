@@ -16,7 +16,7 @@ services:
       - webnet
     environment:
       - "TZ=Europe/Amsterdam"
-      - "GF_INSTALL_PLUGINS=natel-discrete-panel"
+      - "GF_INSTALL_PLUGINS=natel-discrete-panel, grafana-piechart-pane"
     volumes:
       - "./grafana/provisioning:/etc/grafana/provisioning"
       - "./grafana/config.ini:/etc/grafana/config.ini"
